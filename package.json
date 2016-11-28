@@ -1,14 +1,23 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "api-server",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warlock/spellbook.git"
+  },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Josep Subils Rigau <josep@spellbook.io> (http://spellbook.io)",
+  "license": "MIT",
+  "homepage": "https://github.com/warlock/nodejs-api-rest-tester",
+  "bugs":{
+    "url": "https://github.com/warlock/nodejs-api-rest-tester/issues"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
