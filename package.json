@@ -15,13 +15,14 @@
   "author": "Josep Subils Rigau <josep@spellbook.io> (http://spellbook.io)",
   "license": "MIT",
   "homepage": "https://github.com/warlock/nodejs-api-rest-tester",
-  "bugs":{
+  "bugs": {
     "url": "https://github.com/warlock/nodejs-api-rest-tester/issues"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "nedb": "^1.8.0",
+    "socket.io": "^1.7.1",
     "spellbook": "0.0.92"
   }
 }

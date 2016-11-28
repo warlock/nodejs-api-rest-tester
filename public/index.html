@@ -3,9 +3,71 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="http://localhost:3000/public/socket.io-1.4.5.js"></script>
+    <script src="http://localhost:3000/public/nexo.js"></script>
   </head>
   <body>
-    <form>
-    </form>
+    <h1>HTML FOR TESTING</h1>
+    Create a article<br>
+    Title <input type="text" id="title"><br>
+    Tags <input type="text" id="tags"><br>
+    Content <input type="text" id="content"><br>
+    Author <input type="text" id="author"><br>
+    <button id="submitPost" value="Submit">Submit Post</button><br>
+    <button id="submitSocket" value="Submit">Submit Socket</button><br>
+
+    <div id="results"></div>
+
+    <script>
+      var socket = io('http://localhost:3001');
+      n.ready(() => {
+        n.set('response', function (comp, data) {
+          return `Recibed: ${JSON.stringify(data)}`;
+        })
+
+        n.on(n.id('submitSocket'), 'click', () => {
+          console.log(`Socket sending data: ${JSON.stringify(getData())}`)
+          socket.emit('setArticles', getData())
+        })
+
+        n.on(n.id('submitPost'), 'click', () => {
+          var params = getData()
+          var data = Object.keys(params).map((key) => {
+              return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+          }).join('&');
+
+          fetch("http://localhost:3000/articles", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: data
+          }).then((data) => {
+            console.log('recibe data: ' + JSON.stringify(data))
+            n.render('response', 'results', data)
+          }).catch((err) => {
+            console.log(err)
+          })
+        })
+
+        var getData = () => {
+          return {
+            title : n.id('title').value,
+            tags : n.id('tags').value,
+            content : n.id('content').value,
+            author : n.id('author').value
+          }
+        }
+
+        socket.on('setArticle', (data) => {
+          console.log('recibe data: ' + JSON.stringify(data))
+          n.render('response', 'results', data)
+        })
+      })
+
+
+
+
+    </script>
   </body>
 </html>
