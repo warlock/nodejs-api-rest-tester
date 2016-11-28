@@ -1,7 +1,11 @@
 #Node.js API RESTFULL for Testing
+Run the minimal API Restfull in memory database(NeDB) for testing frontend projects.
+
 
 ###Install
 ```sh
+git clone https://github.com/warlock/nodejs-api-rest-tester.git
+cd nodejs-api-rest-tester
 npm i
 ```
 
@@ -10,7 +14,7 @@ npm i
 npm start
 ```
 
-## API RESTFULL Routes
+### API RESTFULL Routes
 Disponible for 'users' and 'articles'.
 
 | HTTP Route       | Verb  | Description                 |
@@ -21,14 +25,14 @@ Disponible for 'users' and 'articles'.
 | /users/:user_id  |  POST | Update a user with new info |
 | /users/:user_id  |  POST | Delete user                 |
 
-## Dependencies thanks:
+### Dependencies thanks
 - Express.js [http://expressjs.com/](http://expressjs.com/)
 - Body-parser [https://github.com/expressjs/body-parser](https://github.com/expressjs/body-parser)
-- nedb [https://github.com/louischatriot/nedb](https://github.com/louischatriot/nedb)
+- NeDB [https://github.com/louischatriot/nedb](https://github.com/louischatriot/nedb)
 
 
 
-#License
+###License
 
 The MIT License (MIT) Copyright (c) 2015 Josep Subils Rigau (josep@spellbook.io)
 
