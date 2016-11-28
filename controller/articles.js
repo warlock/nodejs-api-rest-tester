@@ -5,7 +5,6 @@ module.exports = function (app, db, model) {
   app.route('/articles')
     .post((req, res) => {
       console.log(`ARTICLES POST!`)
-      console.log(JSON.stringify(req.body))
       db.insert(model(req.body), (err, newDoc) => {
         if (err) res.json({ res : false, err : `Have a problem inserting in db ${err}!` })
         else res.json({ res : true })
