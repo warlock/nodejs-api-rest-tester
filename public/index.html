@@ -27,7 +27,7 @@
 
         n.on(n.id('submitSocket'), 'click', () => {
           console.log(`Socket sending data: ${JSON.stringify(getData())}`)
-          socket.emit('setArticles', getData())
+          socket.emit('addtArticles', getData())
         })
 
         n.on(n.id('submitPost'), 'click', () => {

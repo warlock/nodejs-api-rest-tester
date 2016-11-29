@@ -4,11 +4,10 @@ var express = require('express'),
   conf = require('./conf.json'),
   io = require('socket.io')({ transports: ['websocket'] }),
   model = require('./model/model'),
-  db = {}
-
-var app = express(),
-  users = require('./controller/users.js'),
-  articles = require('./controller/articles.js')
+  db = {},
+  defaultUser = require('./defaultUser.json'),
+  app = express(),
+  generator = require('./controller/generator.js')
 
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -18,19 +17,26 @@ app.get('/', (req, res) => {
   res.json({ status : true })
 })
 
-db.articles = new Datastore()
-users(app, new Datastore(), model.user)
-articles(app, db.articles, model.article)
+generator('users', app, new Datastore(), model.article, (app_users, db_users, schema_users) => {
+  db_users.loadDatabase((err) => {
+    if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
+    else {
+      db_users.insert(defaultUser, (err, newDoc) => {
+        if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
+        else console.log(`DB USER: Default user created!`)
+      })
+    }
+  })
+})
 
-app.listen(conf.http_port, () => {
-  console.log(`HTTP: ${conf.http_port} SOCKETS: ${conf.sockets_port}`)
+db.articles = new Datastore()
+generator('articles', app, db.articles, model.article, (app_articles, db_articles, schema_articles) => {
+
 })
 
 io.attach(conf.sockets_port)
 
 io.on('connection', (socket) => {
-
-
   socket.on('getAllArticles', (data) => {
     db.articles.find({}, (err, docs) => {
       if (err) {
@@ -40,7 +46,7 @@ io.on('connection', (socket) => {
     })
   })
 
-  socket.on('setArticles', (data) => {
+  socket.on('addArticles', (data) => {
     db.articles.insert(model.article(data), (err, newDoc) => {
       if (err) {
         console.log(`SOCKET setArticle ERROR: ${err}`)
@@ -75,5 +81,8 @@ io.on('connection', (socket) => {
       } else socket.emit('deleteArticle', { res : true })
     })
   })
+})
 
+app.listen(conf.http_port, () => {
+  console.log(`HTTP: ${conf.http_port} SOCKETS: ${conf.sockets_port}`)
 })
