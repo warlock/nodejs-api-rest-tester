@@ -8,27 +8,74 @@ git clone https://github.com/warlock/nodejs-api-rest-tester.git
 cd nodejs-api-rest-tester
 npm i
 ```
+###Generate models schema
+```json
+{
+  "users": {
+    "username" : "string",
+    "surname" : "string",
+    "password" : "string"
+  },
+  "articles": {
+    "title" : "string",
+    "creation" : "date",
+    "tags" : "string",
+    "content" : "text",
+    "author" : "string"
+  }
+}
+
+```
+
+###Generate http scaffold in 'index.js' after app initialitzation
+```js
+http_gen('articles',  app, new Datastore(), (app_articles, db_articles) => {
+  console.log('Listening http requests for articles...')
+})
+```
+
+###Generate socket.io scaffold in 'index.js', in io.on listener
+```js
+socket_gen('articles', db.articles, socket, (socket_articles, db_articles) => {
+  console.log('Listening websockets for articles...')
+})
+
+```
 
 ###Run
 ```sh
 npm start
 ```
 
-### API RESTFULL Routes
-Disponible for 'users' and 'articles'.
+### HTTP API RESTFULL Routes
+Articles demo:
 
-| HTTP Route       | Verb  | Description                 |
-| ---------------- |:-----:| ---------------------------:|
-| /users           |  GET  | Get all users               |
-| /users           |  POST | Create a user               |
-| /users/:user_id  |  GET  | Get a single user           |
-| /users/:user_id  |  POST | Update a user with new info |
-| /users/:user_id  |  POST | Delete user                 |
+| HTTP Route             | Verb  | Description                    |
+| ---------------------- |:-----:| ------------------------------:|
+| /articles              |  GET  | Get all articles               |
+| /articles              |  POST | Create a article               |
+| /articles/:article_id  |  GET  | Get a single article           |
+| /articles/:article_id  |  POST | Update a article with new info |
+| /articles/:article_id  |  POST | Delete article                 |
+
+
+### SOCKET EMITS AND LISTENERS
+
+| EMIT AND EVENTS   | Description                 |
+| ---------------- :|: ---------------------------:|
+| articlesGetALL    | Get all articles               |
+| articlesAdd       | Create a article               |
+| articlesGet       | Get a single article           |
+| articlesUpdate    | Update a article with new info |
+| articlesDelete    | Delete article                 |
 
 ### Dependencies thanks
-- Express.js [http://expressjs.com/](http://expressjs.com/)
+- Express.js [http://expressjs.com/](http://expressjs.com)
+- Socket.io [http://socket.io](http://socket.io)
 - Body-parser [https://github.com/expressjs/body-parser](https://github.com/expressjs/body-parser)
 - NeDB [https://github.com/louischatriot/nedb](https://github.com/louischatriot/nedb)
+- Spellbook [http://www.spellbook.io](http://www.spellbook.io)
+- Nexo [https://github.com/warlock/nexo](https://github.com/warlock/nexo)
 
 
 

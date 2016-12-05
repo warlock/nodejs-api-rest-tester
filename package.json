@@ -23,6 +23,6 @@
     "express": "^4.14.0",
     "nedb": "^1.8.0",
     "socket.io": "^1.7.1",
-    "spellbook": "0.0.92"
+    "spellbook": "0.0.94"
   }
 }

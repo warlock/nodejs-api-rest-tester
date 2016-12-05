@@ -1,11 +1,11 @@
 var sb = require('spellbook')
-  //db = new Datastore({ filename: 'db/datafile' })
+var validator = require('../validator/validator.js')
 
-module.exports = function (model, app, db, schema, callback) {
+module.exports = function (model, app, db, callback) {
   app.route(`/${model}`)
     .post((req, res) => {
       console.log(`${model} POST!`)
-      db.insert(schema(req.body), (err, newDoc) => {
+      db.insert(validator(model, req.body), (err, newDoc) => {
         if (err) res.json({ res : false, err : `Have a problem inserting in db ${err}!` })
         else res.json({ res : true })
       })
@@ -28,7 +28,7 @@ module.exports = function (model, app, db, schema, callback) {
     })
     .put((req, res) => {
       console.log(`${model} PUT: ${req.params.article_id}`)
-      db.update({ _id: req.params.article_id }, schema(req.body), (err, numReplaced) => {
+      db.update({ _id: req.params.article_id }, validator(model, req.body), (err, numReplaced) => {
         if (err) res.json({ res : false, err : err })
         else res.json({ res : true, numReplaced : numReplaced })
       })
@@ -41,5 +41,5 @@ module.exports = function (model, app, db, schema, callback) {
       })
     })
 
-    callback(app, db, schema)
+    callback(app, db)
 }
