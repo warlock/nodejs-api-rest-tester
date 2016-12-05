@@ -37,7 +37,9 @@ http_gen('articles', app, db.articles, (app_articles, db_articles) => {
 io.attach(conf.sockets_port)
 
 io.on('connection', (socket) => {
-  socket_gen('articles', db.articles, socket)
+  http_gen('articles', app, db.articles, (app_articles, db_articles) => {
+    console.log('HTTP: Listen articles...')
+  })
 })
 
 app.listen(conf.http_port, () => {

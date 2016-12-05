@@ -59,15 +59,43 @@ Articles demo:
 | /articles/:article_id  |  POST | Delete article                 |
 
 
-### SOCKET EMITS AND LISTENERS
+### SOCKET.IO SCAFFOLD
+Articles demo:
 
-| EMIT AND EVENTS   | Description                 |
-| ---------------- :|: ---------------------------:|
+| Emit and events   | Description                    |
+| ----------------- | ------------------------------:|
 | articlesGetALL    | Get all articles               |
 | articlesAdd       | Create a article               |
 | articlesGet       | Get a single article           |
 | articlesUpdate    | Update a article with new info |
 | articlesDelete    | Delete article                 |
+
+### Add fast features in HTTP with callback:
+```js
+http_gen('users', app, new Datastore(), (app_users, db_users) => {
+  db_users.loadDatabase((err) => {
+    if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
+    else {
+      db_users.insert(defaultUser, (err, newDoc) => {
+        if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
+        else console.log(`DB USER: Default user created!`)
+      })
+    }
+  })
+})
+```
+
+### Add fast features in SOCKET with callback:
+```js
+socket_gen('articles', new Datastore(), (socket_articles, db_articles) => {
+  db_articles.find({ _id : 1 }, (err, docs) => {
+    if (err) console.error(`Error... ${err}`)
+    else console.log(`Results: ${JSON.stringify(docs}`)
+  })
+})
+```
+
+
 
 ### Dependencies thanks
 - Express.js [http://expressjs.com/](http://expressjs.com)

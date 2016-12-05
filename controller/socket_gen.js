@@ -46,5 +46,5 @@ module.exports = function (model, db, socket, callback) {
     })
   })
 
-  callback(socket, db)
+  callback(db)
 }
