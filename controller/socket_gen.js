@@ -1,6 +1,6 @@
 var validator = require('../validator/validator.js')
 
-module.exports = function (model, db, socket, callback) {
+module.exports = function (model, socket, db, callback) {
   socket.on(`${model}GetAll`, (data) => {
     db.find({}, (err, docs) => {
       if (err) {
