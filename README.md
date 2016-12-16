@@ -64,7 +64,7 @@ Articles demo:
 
 | Emit and events   | Description                    |
 | ----------------- | ------------------------------:|
-| articlesGetALL    | Get all articles               |
+| articlesGetAll    | Get all articles               |
 | articlesAdd       | Create a article               |
 | articlesGet       | Get a single article           |
 | articlesUpdate    | Update a article with new info |
