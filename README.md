@@ -55,8 +55,8 @@ Articles demo:
 | /articles              |  GET  | Get all articles               |
 | /articles              |  POST | Create a article               |
 | /articles/:article_id  |  GET  | Get a single article           |
-| /articles/:article_id  |  POST | Update a article with new info |
-| /articles/:article_id  |  POST | Delete article                 |
+| /articles/:article_id  |  PUT  | Update a article with new info |
+| /articles/:article_id  |  DEL  | Delete article                 |
 
 
 ### SOCKET.IO SCAFFOLD
