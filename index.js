@@ -2,13 +2,16 @@ var express = require('express'),
   Datastore = require('nedb'),
   bodyParser = require('body-parser'),
   conf = require('./conf.json'),
+  cors = require('cors'),
   io = require('socket.io')({ transports: ['websocket'] }),
   db = {},
   defaultUser = require('./defaultUser.json'),
   app = express(),
   http_gen = require('./controller/http_gen.js'),
-  socket_gen = require('./controller/socket_gen.js')
+  socket_gen = require('./controller/socket_gen.js'),
+  http_req = require('./data/http.js');
 
+app.use(cors())
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -16,6 +19,10 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
   res.json({ status : true })
 })
+
+http_req(app, db, http_gen);
+
+/*
 
 http_gen('users', app, new Datastore(), (app_users, db_users) => {
   db_users.loadDatabase((err) => {
@@ -33,6 +40,9 @@ db.articles = new Datastore()
 http_gen('articles', app, db.articles, (app_articles, db_articles) => {
   console.log('HTTP: Listen articles...')
 })
+
+*/
+
 
 io.attach(conf.sockets_port)
 
