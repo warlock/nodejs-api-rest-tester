@@ -1,15 +1,15 @@
 var express = require('express'),
-  Datastore = require('nedb'),
   bodyParser = require('body-parser'),
   conf = require('./conf.json'),
   cors = require('cors'),
   io = require('socket.io')({ transports: ['websocket'] }),
-  db = {},
-  defaultUser = require('./defaultUser.json'),
   app = express(),
-  http_gen = require('./controller/http_gen.js'),
-  socket_gen = require('./controller/socket_gen.js'),
-  http_req = require('./data/http.js');
+  http_gen = require('./server/http_gen.js'),
+  socket_gen = require('./server/socket_gen.js'),
+  db_gen = require('./server/db_gen.js'),
+  db = db_gen(),
+  http_req = require('./scaffold/http.js'),
+  socket_req = require('./scaffold/socket.js');
 
 app.use(cors())
 app.use('/public', express.static('public'))
@@ -17,41 +17,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.json({ status : true })
-})
-
-http_req(app, db, http_gen);
-
-/*
-
-http_gen('users', app, new Datastore(), (app_users, db_users) => {
-  db_users.loadDatabase((err) => {
-    if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
-    else {
-      db_users.insert(defaultUser, (err, newDoc) => {
-        if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
-        else console.log(`DB USER: Default user created!`)
-      })
-    }
-  })
-})
-
-db.articles = new Datastore()
-http_gen('articles', app, db.articles, (app_articles, db_articles) => {
-  console.log('HTTP: Listen articles...')
-})
-
-*/
-
-
-io.attach(conf.sockets_port)
-
-io.on('connection', (socket) => {
-  socket_gen('articles', socket, db.articles, (app_articles, db_articles) => {
-    console.log('SOCKET: Listen articles...')
-  })
+  res.json({ status : true,  info : 'https://www.npmjs.com/package/rxapi' })
 })
 
 app.listen(conf.http_port, () => {
   console.log(`HTTP: ${conf.http_port} SOCKETS: ${conf.sockets_port}`)
+})
+
+http_req({ http : app, db : db }, http_gen);
+
+io.attach(conf.sockets_port)
+
+io.on('connection', (socket) => {
+  socket_req({ socket : socket, db : db }, socket_gen);
 })

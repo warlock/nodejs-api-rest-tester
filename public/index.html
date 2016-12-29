@@ -27,7 +27,7 @@
 
         n.on(n.id('submitSocket'), 'click', () => {
           console.log(`Socket sending data: ${JSON.stringify(getData())}`)
-          socket.emit('addtArticles', getData())
+          socket.emit('articlesAdd', getData())
         })
 
         n.on(n.id('submitPost'), 'click', () => {
@@ -59,14 +59,11 @@
           }
         }
 
-        socket.on('setArticle', (data) => {
+        socket.on('articlesAdd', (data) => {
           console.log('recibe data: ' + JSON.stringify(data))
           n.render('response', 'results', data)
         })
       })
-
-
-
 
     </script>
   </body>
