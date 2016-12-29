@@ -1,5 +1,5 @@
 module.exports = function (api) {
-  api.gen('articles', (socket_articles, db_articles) => {
+  api.gen('articles', (socket, db) => {
     console.log('SOCKET: Listening articles...')
   })
 }

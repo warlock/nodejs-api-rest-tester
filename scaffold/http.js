@@ -1,9 +1,9 @@
 module.exports = function (api) {
-  api.gen('users', (http_users, db_users) => {
-    db_users.loadDatabase((err) => {
+  api.gen('users', (http, db) => {
+    db.loadDatabase((err) => {
       if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
       else {
-        db_users.insert(
+        db.insert(
           {
             "username" : "user",
             "name" : "user_name",
@@ -18,7 +18,7 @@ module.exports = function (api) {
     })
   })
 
-  api.gen('articles',  (http_articles, db_articles) => {
+  api.gen('articles',  (http, db) => {
     console.log(`HTTP: Listening articles... `)
   })
 }
