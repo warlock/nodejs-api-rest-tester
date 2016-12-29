@@ -22,22 +22,22 @@ module.exports = function (serv) {
 
       serv.http.route(`/${model}/:id`)
         .get((req, res) => {
-          console.log(`${model} GET: ${req.params.article_id}`)
-          serv.db[model].find({ _id : req.params.article_id }, (err, docs) => {
+          console.log(`${model} GET: ${req.params.id}`)
+          serv.db[model].find({ _id : req.params.id }, (err, docs) => {
             if (err) console.log(err)
-            else res.json(docs)
+            else res.json(docs[0])
           })
         })
         .put((req, res) => {
-          console.log(`${model} PUT: ${req.params.article_id}`)
-          serv.db[model].update({ _id: req.params.article_id }, validator(model, req.body), (err, numReplaced) => {
+          console.log(`${model} PUT: ${req.params.id}`)
+          serv.db[model].update({ _id: req.params.id }, validator(model, req.body), (err, numReplaced) => {
             if (err) res.json({ res : false, err : err })
             else res.json({ res : true, numReplaced : numReplaced })
           })
         })
         .delete((req, res) => {
-          console.log(`${model} DELETE: ${req.params.article_id}`)
-          serv.db[model].remove({ _id: req.params.article_id }, {}, function (err, numRemoved) {
+          console.log(`${model} DELETE: ${req.params.id}`)
+          serv.db[model].remove({ _id: req.params.id }, {}, function (err, numRemoved) {
             if (err) res.json({ res : false, err : err })
             else res.json({ res : true, numRemoved : numRemoved })
           })

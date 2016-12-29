@@ -100,7 +100,7 @@ api.gen('users', (http, db) => {
 ### Add fast features in SOCKET with callback:
 ```js
 api.gen('articles', (socket, db) => {
-  db.find({ _id : 1 }, (err, docs) => {
+  db.find({ _id : FX8REOZyumD022XE }, (err, docs) => {
     if (err) console.error(`Error... ${err}`);
     else console.log(`Results: ${JSON.stringify(docs}`);
   })
