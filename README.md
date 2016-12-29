@@ -29,18 +29,18 @@ npm i
 
 ###Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
 ```js
-module.exports = function (http, gen) {
+module.exports = function (api) {
 
-  gen('articles', http)
+  api.gen('articles')
 
 }
 ```
 
 ###Generate SOCKET.IO scaffold in 'scaffold/socket.js':
 ```js
-module.exports = function (socket, gen) {
+module.exports = function (api) {
 
-  gen('articles', socket, (socket_articles, db_articles) => {
+  api.gen('articles' (socket_articles, db_articles) => {
     console.log('SOCKET Articles listening...')
   })
 
@@ -77,11 +77,11 @@ Articles demo:
 
 ### Add fast features in HTTP with callback:
 ```js
-gen('users', http, (http_users, db_users) => {
-  db_users.loadDatabase((err) => {
+api.gen('users', (http, db) => {
+  db.loadDatabase((err) => {
     if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
     else {
-      db_users.insert(
+      db.insert(
         {
           "username" : "user",
           "name" : "user_name",
@@ -99,8 +99,8 @@ gen('users', http, (http_users, db_users) => {
 
 ### Add fast features in SOCKET with callback:
 ```js
-gen('articles', socket, (socket_articles, db_articles) => {
-  db_articles.find({ _id : 1 }, (err, docs) => {
+api.gen('articles', (socket, db) => {
+  db.find({ _id : 1 }, (err, docs) => {
     if (err) console.error(`Error... ${err}`);
     else console.log(`Results: ${JSON.stringify(docs}`);
   })

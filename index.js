@@ -22,12 +22,11 @@ app.get('/', (req, res) => {
 
 app.listen(conf.http_port, () => {
   console.log(`HTTP: ${conf.http_port} SOCKETS: ${conf.sockets_port}`)
+  http_req(http_gen({ http : app, db : db }));
 })
-
-http_req({ http : app, db : db }, http_gen);
 
 io.attach(conf.sockets_port)
 
 io.on('connection', (socket) => {
-  socket_req({ socket : socket, db : db }, socket_gen);
+  socket_req(socket_gen({ socket : socket, db : db }));
 })
