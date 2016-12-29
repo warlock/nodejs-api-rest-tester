@@ -30,18 +30,22 @@ npm i
 ###Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
 ```js
 module.exports = function (http, gen) {
+  
   gen('articles', http, (http_articles, db_articles) => {
     console.log('HTTP Articles listening...')
   })
+
 }
 ```
 
 ###Generate SOCKET.IO scaffold in 'scaffold/socket.js':
 ```js
 module.exports = function (socket, gen) {
+
   gen('articles', socket, (socket_articles, db_articles) => {
     console.log('SOCKET Articles listening...')
   })
+
 }
 ```
 
