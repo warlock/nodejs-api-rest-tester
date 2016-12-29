@@ -1,5 +1,5 @@
-#Node.js API RESTFULL for Testing
-Run the minimal API Restfull in memory database(NeDB) for testing frontend projects.
+#RxApi API RESTFULL & WEBSOCKETS
+Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dumy testing.
 
 
 ###Install
@@ -8,7 +8,7 @@ git clone https://github.com/warlock/nodejs-api-rest-tester.git
 cd nodejs-api-rest-tester
 npm i
 ```
-###Generate models schema
+###Generate models schema in 'schema/schema.js'
 ```json
 {
   "users": {
@@ -27,19 +27,24 @@ npm i
 
 ```
 
-###Generate http scaffold in 'index.js' after app initialitzation
+###Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
 ```js
-http_gen('articles',  app, new Datastore(), (app_articles, db_articles) => {
-  console.log('Listening http requests for articles...')
-})
+module.exports = function (http, gen) {
+
+  gen('articles', http)
+
+}
 ```
 
-###Generate socket.io scaffold in 'index.js', in io.on listener
+###Generate SOCKET.IO scaffold in 'scaffold/socket.js':
 ```js
-socket_gen('articles', db.articles, socket, (socket_articles, db_articles) => {
-  console.log('Listening websockets for articles...')
-})
+module.exports = function (socket, gen) {
 
+  gen('articles', socket, (socket_articles, db_articles) => {
+    console.log('SOCKET Articles listening...')
+  })
+
+}
 ```
 
 ###Run
@@ -50,13 +55,13 @@ npm start
 ### HTTP API RESTFULL Routes
 Articles demo:
 
-| HTTP Route             | Verb  | Description                    |
-| ---------------------- |:-----:| ------------------------------:|
-| /articles              |  GET  | Get all articles               |
-| /articles              |  POST | Create a article               |
-| /articles/:article_id  |  GET  | Get a single article           |
-| /articles/:article_id  |  PUT  | Update a article with new info |
-| /articles/:article_id  |  DEL  | Delete article                 |
+| HTTP Route             | Verb     | Description                    |
+| ---------------------- |:--------:| ------------------------------:|
+| /articles              |  GET     | Get all articles               |
+| /articles              |  POST    | Create a article               |
+| /articles/:article_id  |  GET     | Get a single article           |
+| /articles/:article_id  |  PUT     | Update a article with new info |
+| /articles/:article_id  |  DELETE  | Delete article                 |
 
 
 ### SOCKET.IO SCAFFOLD
@@ -72,13 +77,20 @@ Articles demo:
 
 ### Add fast features in HTTP with callback:
 ```js
-http_gen('users', app, new Datastore(), (app_users, db_users) => {
+gen('users', http, (http_users, db_users) => {
   db_users.loadDatabase((err) => {
     if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
     else {
-      db_users.insert(defaultUser, (err, newDoc) => {
-        if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
-        else console.log(`DB USER: Default user created!`)
+      db_users.insert(
+        {
+          "username" : "user",
+          "name" : "user_name",
+          "surname" : "user_surname",
+          "password" : "password"
+        },
+        (err, newDoc) => {
+        if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`);
+        else console.log(`DB USER: Default user created!`);
       })
     }
   })
@@ -87,14 +99,13 @@ http_gen('users', app, new Datastore(), (app_users, db_users) => {
 
 ### Add fast features in SOCKET with callback:
 ```js
-socket_gen('articles', new Datastore(), (socket_articles, db_articles) => {
+gen('articles', socket, (socket_articles, db_articles) => {
   db_articles.find({ _id : 1 }, (err, docs) => {
-    if (err) console.error(`Error... ${err}`)
-    else console.log(`Results: ${JSON.stringify(docs}`)
+    if (err) console.error(`Error... ${err}`);
+    else console.log(`Results: ${JSON.stringify(docs}`);
   })
 })
 ```
-
 
 
 ### Dependencies thanks
