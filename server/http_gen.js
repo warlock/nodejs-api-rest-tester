@@ -40,5 +40,5 @@ module.exports = function (model, serv, callback) {
       })
     })
 
-    callback(serv.http, serv.db[model])
+    if (Object.prototype.toString.call(callback) == '[object Function]') callback(serv.http, serv.db[model])
 }
