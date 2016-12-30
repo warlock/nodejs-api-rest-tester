@@ -1,13 +1,21 @@
 #RxApi API RESTFULL & WEBSOCKETS
 Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dumy testing.
 
+###Install from npm
+https://www.npmjs.com/package/rxapi
+```sh
+sudo npm i rxapi -g
+rxapi new project
+```
 
-###Install
+###Git Install
 ```sh
 git clone https://github.com/warlock/nodejs-api-rest-tester.git
 cd nodejs-api-rest-tester
 npm i
 ```
+
+
 ###Generate models schema in 'schema.json'
 ```json
 {
