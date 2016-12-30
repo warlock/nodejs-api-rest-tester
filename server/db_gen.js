@@ -1,5 +1,5 @@
 var Datastore = require('nedb');
-var Models = require('../schema/schema.json');
+var Models = require('../schema.json');
 
 module.exports = function () {
   var obj = {};

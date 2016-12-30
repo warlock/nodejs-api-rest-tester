@@ -8,7 +8,7 @@ git clone https://github.com/warlock/nodejs-api-rest-tester.git
 cd nodejs-api-rest-tester
 npm i
 ```
-###Generate models schema in 'schema/schema.js'
+###Generate models schema in 'schema.json'
 ```json
 {
   "users": {

@@ -1,4 +1,4 @@
-var schema = require('../schema/schema.json')
+var schema = require('../schema.json')
 var sb = require('spellbook')
 
 function check(val, type) {
