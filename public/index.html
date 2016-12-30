@@ -7,27 +7,54 @@
     <script src="http://localhost:3000/public/nexo.js"></script>
   </head>
   <body>
-    <h1>HTML FOR TESTING</h1>
+    <h1>HTML FOR DEMO:</h1>
     Create a article<br>
     Title <input type="text" id="title"><br>
     Tags <input type="text" id="tags"><br>
     Content <input type="text" id="content"><br>
     Author <input type="text" id="author"><br>
-    <button id="submitPost" value="Submit">Submit Post</button><br>
-    <button id="submitSocket" value="Submit">Submit Socket</button><br>
+    <button id="submitPost" value="Submit">Submit HTTP Post</button><br>
+    <button id="submitSocket" value="Submit">Submit Socket emit articlesAdd</button><br>
 
+    Get all data:<br>
+    <button id="getHttp" value="Submit">GetAll HTTP articles</button><br>
+    <button id="getSocket" value="Submit">articlesGetAll Socket</button><br>
+
+
+    Results:
     <div id="results"></div>
+
+    Sent:
+    <div id="sent"></div>
 
     <script>
       var socket = io('http://localhost:3001');
       n.ready(() => {
-        n.set('response', function (comp, data) {
-          return `Recibed: ${JSON.stringify(data)}`;
+        n.set('response', (comp, data) => {
+          return data;
         })
 
         n.on(n.id('submitSocket'), 'click', () => {
           console.log(`Socket sending data: ${JSON.stringify(getData())}`)
           socket.emit('articlesAdd', getData())
+        })
+
+        n.on(n.id('getSocket'), 'click', () => {
+          console.log(`Socket articlesGetAll`)
+          socket.emit('articlesGetAll')
+        })
+
+        n.on(n.id('getHttp'), 'click', () => {
+          fetch("http://localhost:3000/articles", {
+	            method: 'get'
+          })
+          .then(res => {
+            return res.json()
+          })
+          .then(res => {
+            console.log('RESPONSE: ' + JSON.stringify(res))
+            n.render('response', 'results', `OK: ${JSON.stringify(res)}`)
+          })
         })
 
         n.on(n.id('submitPost'), 'click', () => {
@@ -42,11 +69,13 @@
               'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             },
             body: data
-          }).then((data) => {
-            console.log('recibe data: ' + JSON.stringify(data))
-            n.render('response', 'results', data)
-          }).catch((err) => {
-            console.log(err)
+          })
+          .then(res => {
+            return res.json()
+          })
+          .then(res => {
+            console.log('RESPONSE: ' + JSON.stringify(res))
+            n.render('response', 'results', `OK: ${JSON.stringify(res)}`)
           })
         })
 
@@ -59,9 +88,14 @@
           }
         }
 
-        socket.on('articlesAdd', (data) => {
-          console.log('recibe data: ' + JSON.stringify(data))
-          n.render('response', 'results', data)
+        socket.on('articlesAdd', data => {
+          console.log('SOCKET REC: ' + JSON.stringify(data))
+          n.render('response', 'results', `SOCKET REC: ${JSON.stringify(data)}`)
+        })
+
+        socket.on('articlesGetAll', data => {
+          console.log('SOCKET REC: ' + JSON.stringify(data))
+          n.render('response', 'results', `SOCKET REC: ${JSON.stringify(data)}`)
         })
       })
 
