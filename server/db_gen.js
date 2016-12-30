@@ -1,10 +1,16 @@
 var Datastore = require('nedb');
-var Models = require('../schema.json');
+var fs = require('fs');
 
 module.exports = function () {
-  var obj = {};
-  Object.keys(Models).forEach( model => {
-    obj[model] = new Datastore();
+  return new Promise((resolve, reject) => {
+    fs.readdir('./models/', (err, res) => {
+      var obj = {};
+      res.forEach(dir => {
+        //obj[dir] = "asdsad";
+        obj[dir] = new Datastore();
+      })
+      if (Object.keys(obj).length > 0) resolve({ data : obj, models : res });
+      else reject('System without models.')
+    })
   })
-  return obj;
 }

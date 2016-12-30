@@ -7,10 +7,34 @@ var express = require('express'),
   http_gen = require('./server/http_gen.js'),
   socket_gen = require('./server/socket_gen.js'),
   db_gen = require('./server/db_gen.js'),
-  db = db_gen(),
   http_req = require('./scaffold/http.js'),
-  socket_req = require('./scaffold/socket.js');
+  socket_req = require('./scaffold/socket.js'),
+  bootstrap = require('./server/bootstrap.js')
 
+db_gen()
+.then(db => {
+  app.use(cors())
+  app.use('/public', express.static('public'))
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.json())
+
+  app.get('/', (req, res) => {
+    res.json({ status : true,  info : 'https://www.npmjs.com/package/rxapi' })
+  })
+
+  app.listen(conf.http_port, () => {
+    console.log(`HTTP: ${conf.http_port} SOCKETS: ${conf.sockets_port}`)
+    console.log(JSON.stringify(db.models))
+    //console.log(JSON.stringify(db.data))
+    //http_req(http_gen({ http : app, db : db }));
+  })
+})
+.catch(err => {
+  console.log(err)
+})
+
+
+/*
 app.use(cors())
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -30,3 +54,4 @@ io.attach(conf.sockets_port)
 io.on('connection', (socket) => {
   socket_req(socket_gen({ socket : socket, db : db }));
 })
+*/
