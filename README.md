@@ -1,8 +1,13 @@
-#RxApi API RESTFULL & WEBSOCKETS
-Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dumy testing.
+#RxApi
+>Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dumy testing.
+>
+>https://warlock.gitbooks.io/rxapi/content/
+>
+>https://www.npmjs.com/package/rxapi
+>
+>https://github.com/warlock/nodejs-api-rest-tester
 
 ###Install from npm
-https://www.npmjs.com/package/rxapi
 ```sh
 sudo npm i rxapi -g
 rxapi new project
@@ -89,14 +94,13 @@ api.gen('users', (http, db) => {
   db.loadDatabase((err) => {
     if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
     else {
-      db.insert(
-        {
-          "username" : "user",
-          "name" : "user_name",
-          "surname" : "user_surname",
-          "password" : "password"
-        },
-        (err, newDoc) => {
+      db.insert({
+        "username" : "user",
+        "name" : "user_name",
+        "surname" : "user_surname",
+        "password" : "password"
+      },
+      (err, newDoc) => {
         if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`);
         else console.log(`DB USER: Default user created!`);
       })
@@ -123,7 +127,6 @@ api.gen('articles', (socket, db) => {
 - NeDB [https://github.com/louischatriot/nedb](https://github.com/louischatriot/nedb)
 - Spellbook [http://www.spellbook.io](http://www.spellbook.io)
 - Nexo [https://github.com/warlock/nexo](https://github.com/warlock/nexo)
-
 
 
 ###License
