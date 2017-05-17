@@ -23,7 +23,7 @@
     "cors": "^2.8.1",
     "express": "^4.14.1",
     "nedb": "^1.8.0",
-    "socket.io": "^1.7.3",
+    "socket.io": "^2.0.0",
     "spellbook": "0.1.8"
   }
 }
