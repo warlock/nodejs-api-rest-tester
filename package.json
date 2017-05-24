@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "Josep Subils Rigau <josep@spellbook.io> (http://spellbook.io)",
@@ -23,7 +25,9 @@
     "cors": "^2.8.1",
     "express": "^4.14.1",
     "nedb": "^1.8.0",
-    "socket.io": "^1.7.3",
-    "spellbook": "0.1.8"
-  }
+    "socket.io": "^2.0.0",
+    "spellbook": "0.1.8",
+    "snyk": "^1.30.1"
+  },
+  "snyk": true
 }
