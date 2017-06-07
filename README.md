@@ -7,13 +7,13 @@
 >
 >https://github.com/warlock/nodejs-api-rest-tester
 
-###Install from npm
+### Install from npm
 ```sh
 sudo npm i rxapi -g
 rxapi new project
 ```
 
-###Git Install
+### Git Install
 ```sh
 git clone https://github.com/warlock/nodejs-api-rest-tester.git
 cd nodejs-api-rest-tester
@@ -21,7 +21,7 @@ npm i
 ```
 
 
-###Generate models schema in 'schema.json'
+### Generate models schema in 'schema.json'
 ```json
 {
   "users": {
@@ -40,7 +40,7 @@ npm i
 
 ```
 
-###Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
+### Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
 ```js
 module.exports = function (api) {
 
@@ -49,7 +49,7 @@ module.exports = function (api) {
 }
 ```
 
-###Generate SOCKET.IO scaffold in 'scaffold/socket.js':
+### Generate SOCKET.IO scaffold in 'scaffold/socket.js':
 ```js
 module.exports = function (api) {
 
@@ -60,7 +60,7 @@ module.exports = function (api) {
 }
 ```
 
-###Run
+### Run
 ```sh
 npm start
 ```
@@ -129,7 +129,7 @@ api.gen('articles', (socket, db) => {
 - Nexo [https://github.com/warlock/nexo](https://github.com/warlock/nexo)
 
 
-###License
+### License
 
 The MIT License (MIT) Copyright (c) 2015 Josep Subils Rigau (josep@spellbook.io)
 
