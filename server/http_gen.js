@@ -1,6 +1,5 @@
 var validator = require('./validator.js')
 
-
 module.exports = function (serv) {
   return {
     gen : function (model, callback) {
@@ -14,10 +13,10 @@ module.exports = function (serv) {
         })
         .get((req, res) => {
           console.log(`${model} GET ALL!`)
-            serv.db[model].find({}, (err, docs) => {
-              if (err) console.log(err)
-              else res.json(docs)
-            })
+          serv.db[model].find({}, (err, docs) => {
+            if (err) console.log(err)
+            else res.json(docs)
+          })
         })
 
       serv.http.route(`/${model}/:id`)
@@ -43,7 +42,7 @@ module.exports = function (serv) {
           })
         })
 
-        if (Object.prototype.toString.call(callback) == '[object Function]') callback(serv.http, serv.db[model])
+      if (Object.prototype.toString.call(callback) == '[object Function]') callback(serv.http, serv.db[model])
     }
   }
 }

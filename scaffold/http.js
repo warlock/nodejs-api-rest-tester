@@ -11,9 +11,9 @@ module.exports = function (api) {
             "password" : "password"
           },
           (err, newDoc) => {
-          if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
-          else console.log(`DB USER: Default user created!`)
-        })
+            if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
+            else console.log(`DB USER: Default user created!`)
+          })
       }
     })
   })

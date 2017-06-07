@@ -8,18 +8,18 @@ function check(val, type) {
 
 function res(type) {
   switch (type) {
-    case 'string':
-      return 'Default string'
-    case 'integer':
-      return 1
-    case 'number':
-      return 123
-    case 'function':
-      return function() {}
-    case 'object':
-      return { object : 'object' }
-    default:
-      return 'Unknown type'
+  case 'string':
+    return 'Default string'
+  case 'integer':
+    return 1
+  case 'number':
+    return 123
+  case 'function':
+    return function() {}
+  case 'object':
+    return { object : 'object' }
+  default:
+    return 'Unknown type'
   }
 }
 

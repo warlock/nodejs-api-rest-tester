@@ -1,10 +1,10 @@
-var Datastore = require('nedb');
-var Models = require('../schema.json');
+var Datastore = require('nedb')
+var Models = require('../schema.json')
 
 module.exports = function () {
-  var obj = {};
+  var obj = {}
   Object.keys(Models).forEach( model => {
-    obj[model] = new Datastore();
+    obj[model] = new Datastore()
   })
-  return obj;
+  return obj
 }
