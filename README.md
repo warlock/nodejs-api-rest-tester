@@ -42,7 +42,7 @@ npm i
 
 ### Generate HTTP RESTFULL scaffold in 'scaffold/http.js':
 ```js
-module.exports = function (api) {
+module.exports = api => {
 
   api.gen('articles')
 
@@ -51,7 +51,7 @@ module.exports = function (api) {
 
 ### Generate SOCKET.IO scaffold in 'scaffold/socket.js':
 ```js
-module.exports = function (api) {
+module.exports = api => {
 
   api.gen('articles' (socket, db) => {
     console.log('SOCKET Articles listening...')
@@ -91,7 +91,7 @@ Articles demo:
 ### Add fast features in HTTP with callback:
 ```js
 api.gen('users', (http, db) => {
-  db.loadDatabase((err) => {
+  db.loadDatabase(err => {
     if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
     else {
       db.insert({

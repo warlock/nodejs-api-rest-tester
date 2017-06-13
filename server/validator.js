@@ -1,12 +1,12 @@
 var schema = require('../schema.json')
 var sb = require('spellbook')
 
-function check(val, type) {
+var check = (val, type) => {
   if (sb.empty(sb.get(sb, `is${sb.capitalize(type)}`))) return val
   else return sb.get(sb, `is${sb.capitalize(type)}`)(val)
 }
 
-function res(type) {
+var res = type => {
   switch (type) {
   case 'string':
     return 'Default string'
@@ -23,7 +23,7 @@ function res(type) {
   }
 }
 
-module.exports = function verify(model, data) {
+module.exports = (model, data) => {
   if (Object.keys(schema[model]).length > 0) {
     let obj = {}
     Object.keys(schema[model]).forEach((key) => {

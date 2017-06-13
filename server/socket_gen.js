@@ -1,8 +1,8 @@
 var validator = require('./validator.js')
 
-module.exports = function (serv) {
+module.exports = serv => {
   return {
-    gen : function (model, callback) {
+    gen : (model, callback) => {
       serv.socket.on(`${model}GetAll`, (data) => {
         serv.db[model].find({}, (err, docs) => {
           if (err) {
@@ -40,7 +40,7 @@ module.exports = function (serv) {
       })
 
       serv.socket.on(`${model}Delete`, (data) => {
-        serv.db[model].remove({ _id: req.params.article_id }, {}, function (err, numRemoved) {
+        serv.db[model].remove({ _id: req.params.article_id }, {}, (err, numRemoved) => {
           if (err) {
             console.log(`SOCKET ${model}Delete ERROR: ${err}`)
             serv.socket.emit(`${model}Delete`, { err : err })

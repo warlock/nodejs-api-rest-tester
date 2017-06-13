@@ -1,6 +1,7 @@
 module.exports = function (api) {
   api.gen('users', (http, db) => {
-    db.loadDatabase((err) => {
+    
+    db.loadDatabase(err => {
       if (err) throw Error(`DB USER: Have a problem loading db ${err}`)
       else {
         db.insert(
@@ -13,7 +14,8 @@ module.exports = function (api) {
           (err, newDoc) => {
             if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)
             else console.log(`DB USER: Default user created!`)
-          })
+          }
+        )
       }
     })
   })

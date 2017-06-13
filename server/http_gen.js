@@ -1,8 +1,8 @@
 var validator = require('./validator.js')
 
-module.exports = function (serv) {
+module.exports = serv => {
   return {
-    gen : function (model, callback) {
+    gen : (model, callback) => {
       serv.http.route(`/${model}`)
         .post((req, res) => {
           console.log(`${model} POST!`)
@@ -36,7 +36,7 @@ module.exports = function (serv) {
         })
         .delete((req, res) => {
           console.log(`${model} DELETE: ${req.params.id}`)
-          serv.db[model].remove({ _id: req.params.id }, {}, function (err, numRemoved) {
+          serv.db[model].remove({ _id: req.params.id }, {}, (err, numRemoved) => {
             if (err) res.json({ res : false, err : err })
             else res.json({ res : true, numRemoved : numRemoved })
           })
