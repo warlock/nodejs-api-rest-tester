@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/warlock/spellbook.git"
+    "url": "git+https://github.com/warlock/nodejs-api-rest-tester.git"
   },
   "scripts": {
     "start": "node index.js",
@@ -23,7 +23,7 @@
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "nedb": "^1.8.0",
-    "socket.io": "^2.0.2",
+    "socket.io": "^2.0.3",
     "spellbook": "0.1.22"
   }
 }
