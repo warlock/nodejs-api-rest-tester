@@ -1,4 +1,4 @@
-module.exports = function (api) {
+module.exports = api => {
   api.gen('users', (http, db) => {
     
     db.loadDatabase(err => {
