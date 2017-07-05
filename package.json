@@ -1,7 +1,7 @@
 {
   "name": "rxapi-git",
   "version": "0.0.1",
-  "description": "Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dumy testing.",
+  "description": "Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dummy testing.",
   "main": "index.js",
   "repository": {
     "type": "git",
