@@ -1,25 +1,26 @@
-# RxApi
+# RxApi DUMMY VERSION
 >Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dummy testing.
->
->https://warlock.gitbooks.io/rxapi/content/
->
->https://www.npmjs.com/package/rxapi
 >
 >https://github.com/warlock/nodejs-api-rest-tester
 
-### Install from npm
+### Install rxAPI from npm
 ```sh
 sudo npm i rxapi -g
+```
+
+
+### Create a dummy project
+```sh
+rxapi dummy project
+```
+
+### Create a server project
+```sh
 rxapi new project
 ```
 
-### Git Install
-```sh
-git clone https://github.com/warlock/nodejs-api-rest-tester.git
-cd nodejs-api-rest-tester
-npm i
-```
 
+## DOCUMENTATION FOR RXAPI DUMMY IN MEMORY:
 
 ### Generate models schema in 'schema.json'
 ```json
@@ -125,8 +126,6 @@ api.gen('articles', (socket, db) => {
 - Socket.io [http://socket.io](http://socket.io)
 - Body-parser [https://github.com/expressjs/body-parser](https://github.com/expressjs/body-parser)
 - NeDB [https://github.com/louischatriot/nedb](https://github.com/louischatriot/nedb)
-- Spellbook [http://www.spellbook.io](http://www.spellbook.io)
-- Nexo [https://github.com/warlock/nexo](https://github.com/warlock/nexo)
 
 
 ### License
