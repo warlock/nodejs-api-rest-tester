@@ -12,6 +12,7 @@ const express = require('express'),
   socket_req = require('./scaffold/socket.js')
 
 app.use(cors())
+app.disable('x-powered-by')
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
