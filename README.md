@@ -1,7 +1,7 @@
 # RxApi DUMMY VERSION
 >Run the minimal API HTTP RESTFULL and WEBSOCKETS in memory database for make a fast dummy testing.
 >
->https://github.com/warlock/nodejs-api-rest-tester
+>https://rxapi.js.gl
 
 ### Install rxAPI from npm
 ```sh
@@ -21,6 +21,8 @@ rxapi new project
 
 
 ## DOCUMENTATION FOR RXAPI DUMMY IN MEMORY:
+
+[http://rxapi.js.gl](http://rxapi.js.gl)
 
 ### Generate models schema in 'schema.json'
 ```json
@@ -114,8 +116,8 @@ api.gen('users', (http, db) => {
 ```js
 api.gen('articles', (socket, db) => {
   db.find({ _id : FX8REOZyumD022XE }, (err, docs) => {
-    if (err) console.error(`Error... ${err}`);
-    else console.log(`Results: ${JSON.stringify(docs}`);
+    if (err) console.error(`Error... ${err}`)
+    else console.log(`Results: ${JSON.stringify(docs)}`)
   })
 })
 ```
@@ -130,7 +132,7 @@ api.gen('articles', (socket, db) => {
 
 ### License
 
-The MIT License (MIT) Copyright (c) 2015 Josep Subils Rigau (josep@spellbook.io)
+The MIT License (MIT) Copyright (c) 2016 Josep Subils Rigau (josep@js.gl)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
