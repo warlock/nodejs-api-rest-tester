@@ -6,10 +6,10 @@ module.exports = api => {
       else {
         db.insert(
           {
-            "username" : "user",
-            "name" : "user_name",
-            "surname" : "user_surname",
-            "password" : "password"
+            username: "user",
+            name: "user_name",
+            surname: "user_surname",
+            password: "password"
           },
           (err, newDoc) => {
             if (err) throw Error(`DB USER: Have a problem inserting in db ${err}!`)

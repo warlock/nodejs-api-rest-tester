@@ -17,7 +17,7 @@ var res = type => {
   case 'function':
     return function() {}
   case 'object':
-    return { object : 'object' }
+    return { object: 'object' }
   default:
     return 'Unknown type'
   }
@@ -25,8 +25,8 @@ var res = type => {
 
 module.exports = (model, data) => {
   if (Object.keys(schema[model]).length > 0) {
-    let obj = {}
-    Object.keys(schema[model]).forEach((key) => {
+    var obj = {}
+    Object.keys(schema[model]).forEach(key => {
       if (check(data[key], schema[model][key])) obj[key] = data[key]
       else obj[key] = res(schema[model][key])
     })
