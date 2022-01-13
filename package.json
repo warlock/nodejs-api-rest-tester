@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "keywords": [],
   "author": "Josep Subils Rigau <js@js.gl> (http://js.gl)",
@@ -21,9 +23,11 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.16.0",
     "nedb": "^1.8.0",
-    "socket.io": "^2.0.3",
-    "spellbook": "1.1.1"
-  }
+    "socket.io": "^3.0.0",
+    "spellbook": "1.1.1",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
